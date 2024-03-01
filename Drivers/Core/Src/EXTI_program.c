@@ -19,11 +19,11 @@ static void(*EXTI_callback[16])(void);
 void EXTI_voidInit()
 {
 	#if EXTI_MODE == RISING
-	EXTI -> RSTR =0xffffffff;
+	EXTI -> RTSR =0xffffffff;
 	#elif EXTI_MODE == FALLING
 	EXTI -> FTSR=0xffffffff;
 	#elif EXTI_MODE == ON_CHANGE
-	EXTI -> RSTR =0xffffffff;
+	EXTI -> RTSR =0xffffffff;
 	EXTI -> FTSR=0xffffffff;
 	#else  #error "Wrong Mode And Line Choice"
 	#endif
@@ -45,9 +45,9 @@ void EXTI_voidSetSignalLatch(u8 Copy_u8Line, u8 Copy_u8Mode)
 {
 	switch(Copy_u8Mode)
 	{
-		case RISING    :  SET_BIT(EXTI -> RSTR , EXTI_LINE);break;
+		case RISING    :  SET_BIT(EXTI -> RTSR , EXTI_LINE);break;
 		case FALLING   :  SET_BIT(EXTI -> FTSR , EXTI_LINE); break;
-		case ON_CHANGE :  SET_BIT(EXTI -> RSTR , EXTI_LINE);
+		case ON_CHANGE :  SET_BIT(EXTI -> RTSR , EXTI_LINE);
 	                      SET_BIT(EXTI -> FTSR , EXTI_LINE); break;
 		default        :   /* error */ break;
 	}

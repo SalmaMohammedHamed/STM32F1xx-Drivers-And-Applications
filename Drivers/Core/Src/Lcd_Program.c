@@ -9,10 +9,10 @@
 #include "definition.h"
 #include "Special_Functions.h"
 #include "GPIO_interface.h"
+#include "SysTick_interface.h"
 #include "Lcd_Interface.h"
 #include "Lcd_Private.h"
 #include "Lcd_config.h"
-
 void LCD_voidSendCommand(u8 command)
 {
 
@@ -52,21 +52,40 @@ void LCD_voidInit()
 {
 	//set Direction
 	//all portA output
-	GPIO_voidSetPortDir(Lcd_ControlGroup, 0x11111111, 0x11111111);
+	GPIO_voidSetPinDir(Lcd_ControlGroup, Lcd_RsPin, GPIO_OUTPUT_PP_10MHZ);
+	GPIO_voidSetPinDir(Lcd_ControlGroup, Lcd_RwPin, GPIO_OUTPUT_PP_10MHZ);
+	GPIO_voidSetPinDir(Lcd_ControlGroup, Lcd_EPin, GPIO_OUTPUT_PP_10MHZ);
+	GPIO_voidSetPinDir(Lcd_DCGroup, 0, GPIO_OUTPUT_PP_10MHZ);
+	GPIO_voidSetPinDir(Lcd_DCGroup, 1, GPIO_OUTPUT_PP_10MHZ);
+	GPIO_voidSetPinDir(Lcd_DCGroup, 2, GPIO_OUTPUT_PP_10MHZ);
+	GPIO_voidSetPinDir(Lcd_DCGroup, 3, GPIO_OUTPUT_PP_10MHZ);
+	GPIO_voidSetPinDir(Lcd_DCGroup, 4, GPIO_OUTPUT_PP_10MHZ);
+	GPIO_voidSetPinDir(Lcd_DCGroup, 5, GPIO_OUTPUT_PP_10MHZ);
+	GPIO_voidSetPinDir(Lcd_DCGroup, 6, GPIO_OUTPUT_PP_10MHZ);
+	GPIO_voidSetPinDir(Lcd_DCGroup, 7, GPIO_OUTPUT_PP_10MHZ);
 	//wait for 30ms
-	delay(35);
+	STK_SetBusyWait(16000000);
+	STK_SetBusyWait(16000000);
+	STK_SetBusyWait(16000000);
+	STK_SetBusyWait(16000000);
+	STK_SetBusyWait(16000000);
+	STK_SetBusyWait(16000000);
 	//sent the Function set
 	LCD_voidSendCommand(LCD_Set8Bit2Line5x8);
 	//wait for 39us
-	delay(1);
+	STK_SetBusyWait(16000000);
+	STK_SetBusyWait(16000000);
 	//sent the display
 	LCD_voidSendCommand(LCD_8BitCursorBlinkON);
 	//wait for 39us
-	delay(1);
+	STK_SetBusyWait(16000000);
+	STK_SetBusyWait(16000000);
 	//sent the Clear
 	LCD_voidSendCommand(LCD_8BitClearDisplay);
 	//wait for 1.53ms
-	delay(2);
+	STK_SetBusyWait(16000000);
+	STK_SetBusyWait(16000000);
+	STK_SetBusyWait(16000000);
 	//sent the EntryMode
 	LCD_voidSendCommand(LCD_8BitEntryMode1);
 

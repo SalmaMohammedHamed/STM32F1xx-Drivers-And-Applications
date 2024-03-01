@@ -44,10 +44,10 @@ int main(void)
 
 	RCC_voidInitSysClock();
 	RCC_voidEnableClock(RCC_APB2,RCC_APP2_IOPA_EN);
-	GPIO_voidSetPinDir(GPIO_PORTA, GPIO_PIN0, GPIO_OUTPUT_PP_2MHZ);
+	RCC_voidEnableClock(RCC_APB2,RCC_APP2_IOPB_EN);
 	STK_Init();
-	STK_SetIntervalPeriodic(16000000, led);
-
+	LCD_voidInit();
+	LCD_voidSendData('a');
 
   while (1)
   {

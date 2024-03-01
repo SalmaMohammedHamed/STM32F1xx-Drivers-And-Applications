@@ -9,10 +9,10 @@
 #define HAL_LCD_LCD_CONFIG_H_
 #include "GPIO_interface.h"
 #define Lcd_ControlGroup        GPIO_PORTB
-#define Lcd_RsPin				GPIO_PIN8
-#define Lcd_RwPin				GPIO_PIN9
-#define Lcd_EPin				GPIO_PIN10
-#define Lcd_DCGroup             GPIO_PORTB
+#define Lcd_RsPin				GPIO_PIN0
+#define Lcd_RwPin				GPIO_PIN1
+#define Lcd_EPin				GPIO_PIN3
+#define Lcd_DCGroup             GPIO_PORTA
 #define LcdMode                 8
 #if(LcdMode==4)
 #define Lcd_D4 DIO_Pin4
