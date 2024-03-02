@@ -30,6 +30,7 @@ Core/Src/main.o: ../Core/Src/main.c ../Core/Inc/main.h \
  ../Core/Inc/AFIO_private.h ../Core/Inc/SysTick_interface.h \
  ../Core/Inc/Led_Interface.h ../Core/Inc/Switch_Interface.h \
  ../Core/Inc/Switch_Config.h ../Core/Inc/Switch_Private.h \
+ ../Core/Inc/STB_interface.h ../Core/Inc/STB_config.h \
  ../Core/Inc/Lcd_Interface.h
 ../Core/Inc/main.h:
 ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal.h:
@@ -72,4 +73,6 @@ Core/Src/main.o: ../Core/Src/main.c ../Core/Inc/main.h \
 ../Core/Inc/Switch_Interface.h:
 ../Core/Inc/Switch_Config.h:
 ../Core/Inc/Switch_Private.h:
+../Core/Inc/STB_interface.h:
+../Core/Inc/STB_config.h:
 ../Core/Inc/Lcd_Interface.h:

@@ -15,39 +15,21 @@
 #include "SysTick_interface.h"
 #include "Led_Interface.h"
 #include "Switch_Interface.h"
+#include "STB_interface.h"
+#include "STB_config.h"
 #include "Lcd_Interface.h"
 
-void led (void)
-{
-	static u32 state=0;
-	static u32 counter=0;
-	if (counter%3000==0)
-	{
-		if (state==0)
-		{
-			GPIO_voidSetPinValue(GPIO_PORTA , GPIO_PIN0 , HIGH );
-			state=1;
-		}
-		else if (state==1)
-		{
-			GPIO_voidSetPinValue(GPIO_PORTA , GPIO_PIN0 , LOW );
-			state=0;
-		}
 
-	}
-
-	counter++;
-}
-
-int main(void)
+void main(void)
 {
 
 	RCC_voidInitSysClock();
 	RCC_voidEnableClock(RCC_APB2,RCC_APP2_IOPA_EN);
-	RCC_voidEnableClock(RCC_APB2,RCC_APP2_IOPB_EN);
+	GPIO_voidSetPinDir(STP_SERIAL_DATA, GPIO_OUTPUT_PP_2MHZ);
+	GPIO_voidSetPinDir(STP_SHIFT_CLK, GPIO_OUTPUT_PP_2MHZ);
+	GPIO_voidSetPinDir(STP_STORAGE_CLK, GPIO_OUTPUT_PP_2MHZ);
 	STK_Init();
-	LCD_voidInit();
-	LCD_voidSendData('a');
+	STP_voidSendSync(0xAA);
 
   while (1)
   {
